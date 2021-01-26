@@ -43,9 +43,9 @@ fn main() {
         )
         .get_matches();
     match matches.subcommand() {
-        ("get", Some(cmd)) => unimplemented!("get"),
-        ("rm", Some(cmd)) => unimplemented!("rm"),
-        ("set", Some(cmd)) => unimplemented!("set"),
+        ("get", Some(_cmd)) => unimplemented!("get"),
+        ("rm", Some(_cmd)) => unimplemented!("rm"),
+        ("set", Some(_cmd)) => unimplemented!("set"),
         _ => {}
     }
     process::exit(1);
