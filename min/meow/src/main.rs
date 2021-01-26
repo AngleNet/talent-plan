@@ -2,7 +2,7 @@ use clap::{App, Arg};
 use std::fmt;
 
 fn main() {
-    bar();
+  test_clap();
 }
 
 // error handling
