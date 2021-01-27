@@ -1,6 +1,47 @@
-use clap::{App, Arg, SubCommand};
+use clap::{App, Arg, ArgMatches, SubCommand};
 use std::process;
+use structopt::StructOpt;
 fn main() {
+    parse_cmd_via_opt();
+    process::exit(1);
+}
+
+#[derive(Debug, StructOpt)]
+#[structopt(name = env!("CARGO_PKG_NAME"),
+    about=env!("CARGO_PKG_DESCRIPTION"), author=env!("CARGO_PKG_AUTHORS"),
+    version=env!("CARGO_PKG_VERSION"))]
+struct Options {
+    #[structopt(subcommand)]
+    cmd: Option<Command>,
+}
+
+#[derive(Debug, StructOpt)]
+enum Command {
+    #[structopt(name = "get", about = "Get the value")]
+    Get {
+        #[structopt(help = "A string key", name = "KEY")]
+        key: String,
+    },
+    #[structopt(name = "set", about = "Set a key value pair")]
+    Set {
+        #[structopt(name = "KEY", help = "A string key")]
+        key: String,
+        #[structopt(name = "VALUE", help = "A string value")]
+        value: String,
+    },
+    #[structopt(name = "rm", about = "Remove a key value pair")]
+    Remove {
+        #[structopt(name = "KEY", help = "A string key")]
+        key: String,
+    },
+}
+
+fn parse_cmd_via_opt() {
+    let opts = Options::from_args();
+    println!("{:?}", opts);
+}
+
+fn parse_cmd_via_clap() {
     let matches = App::new(env!("CARGO_PKG_NAME"))
         .about(env!("CARGO_PKG_DESCRIPTION"))
         .author(env!("CARGO_PKG_AUTHORS"))
@@ -48,5 +89,4 @@ fn main() {
         ("set", Some(_cmd)) => unimplemented!("set"),
         _ => {}
     }
-    process::exit(1);
 }
