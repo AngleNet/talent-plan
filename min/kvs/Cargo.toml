@@ -1,15 +1,12 @@
 [package]
 name = "kvs"
 version = "0.1.0"
-authors = ["anglenet <anglenet@sina.cn>"]
+authors = ["Yilin Chen <sticnarf@gmail.com>"]
+description = "A key-value store"
 edition = "2018"
-description = "a key-value store"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-clap = "2.33.2"
-structopt = "0.3.21"
+clap = "2.32.0"
 
 [dev-dependencies]
 assert_cmd = "0.11.0"
